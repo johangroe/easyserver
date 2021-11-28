@@ -1,0 +1,48 @@
+/* all pages */
+body {
+  font-family: Calibri, sans-serif;
+  margin-left: 100px;
+}
+#header {
+  color: rgb(255, 0, 0);
+  text-decoration: underline;
+}
+
+/*homepage*/
+#download img{
+  text-align: center;
+  margin: auto;
+  padding-left: 10px;
+}
+
+
+#invalid_login {
+  color: rgb(255, 0, 0);
+  text-decoration: underline;
+}
+
+
+#invalid_register {
+  color: rgb(255, 0, 0);
+  text-decoration: underline;
+}
+
+
+#login_register_form * {
+  position: relative;
+  margin: 3px;
+  left: -10px;
+}
+
+
+#change_mode * {
+  display: inline-block;
+}
+
+#redirect * {
+  display: inline-block
+}
+
+#redirect button {
+  margin: 3px;
+}

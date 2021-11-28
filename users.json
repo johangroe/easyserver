@@ -1,0 +1,1 @@
+{"_default": {"1": {"id": -1, "temporary_tables": "admin, user"}, "2": {"id": 1, "table": "user", "username": "Johan", "password": ".py", "clients-loggedin-stayloggedin": {"web": [true, true]}}, "3": {"id": 2, "table": "user", "username": "Johan2", "password": ".py2", "clients-loggedin-stayloggedin": {"web": [true, true]}}}}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="{{ url_for('static', filename='icons/main.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>{{ tab_title }}</title>
+  </head>
+  <body>
+
+    <div id="header">
+      <h1>Your personal account:</h1>
+    </div>
+    
+    <div>
+        <p>Change, what you'd like to change, or not...</p>
+    </div>
+    <br>
+
+    <div>
+      <p>Click to go back to the <a href="/">homepage</a>.<br>Need help, have questions or tips? <a href="mailto:{{ support_mail }}?subject=Contact: {{ proj_name }}">Contact the support.</a></p>
+    </div>
+
+
+  </body>
+</html>
