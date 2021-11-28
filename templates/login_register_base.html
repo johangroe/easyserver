@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% block head %}
+      <link rel="icon" href="{{ url_for('static', filename='icons/main.ico') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% endblock head %}
+  </head>
+
+  <body>
+
+
+    <div id="header">
+      {% block header %}
+      {% endblock header %}
+    </div>
+
+    <div id="login_register_form">
+      <form method="POST" autocomplete="off">
+          {% block form %}
+          {% endblock form %}
+      </form>
+    </div>
+
+    {% block error %}
+    {% endblock error %}
+    
+    <br>
+
+    <form method="POST">
+      {% block change_mode %}
+      {% endblock change_mode %}
+    </form>
+    
+
+    <p>Click to go back to the <a href="/">homepage</a>.<br>
+      Need help, have questions or tips? <a href="mailto:{{ support_mail }}?subject=Contact: {{ proj_name }}">Contact the support</a>.</p>
+
+
+  </body>
+</html>

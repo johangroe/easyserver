@@ -1,0 +1,27 @@
+---
+PROJ_NAME: "MoneyApp"
+SUPPORT_MAIL_ADDRESS: "example@example.com"
+
+## homepage stuff
+HOMEPAGE_TAB_TITLE: f"{PROJ_NAME} - Home"
+## every item you enter is a new line.
+HOMEPAGE_PROJ_DESCR: ["An App, that tracks on what stuff you have spent how much money.", "It can be used locally, but offers free cloud storage and sync too."]
+## "None" hides the link
+HOMEPAGE_LINK_DWNLD_ANDROID: "android_dload"
+HOMEPAGE_LINK_DWNLD_IOS: "ios_dload"
+HOMEPAGE_LINK_DWNLD_WIN: "win_dload"
+HOMEPAGE_LINK_DWNLD_LINUX: "linux_dload"
+HOMEPAGE_LINK_DWNLD_MACOS: "macos_dload"
+
+## login page stuff
+LOGIN_TAB_TITLE: "MoneyApp - Login"
+
+## register page stuff
+REGISTER_TAB_TITLE: "MoneyApp - Register"
+
+## user page stuff
+USER_TAB_TITLE: "MoneyApp - Account"
+
+## admin page stuff
+ADMIN_TAB_TITLE: "MoneyApp - Admin"
+...

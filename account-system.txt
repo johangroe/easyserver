@@ -1,0 +1,19 @@
+EINE html-seite, verschiedene Modi:
+
+Modus 1: "login"
+login-Modus
+- Formular anzeigen
+- auf Knopfdruck einloggen
+- eventuelle Fehler anzeigen
+
+Modus 2: "register"
+registrier-Modus
+- Formular anzeigen
+- auf Knopfdruck registrieren und einloggen
+- eventuelle Fehler anzeigen
+
+Modus 3: "account"
+benutzer-Modus
+- Nutzerdaten anzeigen
+- "Einstellungen" anzeigen etc.
+- Abmeldeknopf

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="{{ url_for('static', filename='icons/main.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>{{ tab_title }}</title>
+  </head>
+  <body>
+
+    <div id="header">
+      <h1>This is the homepage of: {{ proj_name }}</h1>
+    </div>
+
+    <div>
+      <p>
+        {# why the hell does it work like this? like wtf??? #}
+
+        {% for elem in proj_descr %}
+          {% for item in elem %}
+            {{ item }}<br>
+          {% endfor %}
+        {% endfor %}
+      </p>
+    </div>
+
+
+    <div id="download">
+        {% if link_dload_android != None: %}
+          <a href="{{ link_dload_android }}" target="_blank"><img src="{{ url_for('static', filename='img/download_android.png') }}"></a>
+        {% endif %}
+
+        {% if link_dload_ios != None: %}
+          <a href="{{ link_dload_ios }}" target="_blank"><img src="{{ url_for('static', filename='img/download_ios.png') }}"></a>
+        {% endif %}
+
+        {% if link_dload_win != None: %}
+          <a href="{{ link_dload_win }}" target="_blank"><img src="{{ url_for('static', filename='img/download_win.png') }}"></a>
+        {% endif %}
+      
+        {% if link_dload_linux != None: %}
+          <a href="{{ link_dload_linux }}" target="_blank"><img src="{{ url_for('static', filename='img/download_linux.png') }}"></a>
+        {% endif %}
+
+        {% if link_dload_macos != None: %}
+          <a href="{{ link_dload_macos }}" target="_blank"><img src="{{ url_for('static', filename='img/download_macos.png') }}"></a>
+        {% endif %}
+    </div>
+    
+    <br>
+
+    
+    <div id="redirect">
+      {% if user_name != None %}
+        <p>Hi {{ user_name}}!</p>
+        
+      {% endif %}
+
+      {% if user_loggedin == False %}
+        <form method="POST">
+          <input type="hidden" name="origin" value="homepage_login">
+          <button type="submit">Login</button>
+        </form>
+        
+        <p>or</p>
+        
+        <form method="POST">
+          <input type="hidden" name="origin" value="homepage_register">
+          <button type="submit">register</button>
+        </form>.
+
+      {% elif user_loggedin == True %}
+        <p>Go to your</p>
+        <form method="POST">
+          <input type="hidden" name="origin" value="homepage_account">
+          <button type="submit">account</button>
+        </form>
+
+        <p>or</p>
+        
+        <form method="POST">
+          <input type="hidden" name="origin" value="homepage_account_logout">
+          <button type="submit">logout</button>
+        </form>.
+      {% endif %}
+
+      <p>Need help, have questions or tips? <a href="mailto:{{ support_mail }}?subject=Contact: {{ proj_name }}">Contact the support.</a></p>
+      
+    </div>
+
+    
+    
+
+
+  </body>
+</html>

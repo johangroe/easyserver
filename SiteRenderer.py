@@ -16,7 +16,7 @@ import DataProcessorServer as datapro
 #print(config)
 
 PROJ_NAME = "MoneyApp"
-SUPPORT_MAIL_ADDRESS = "johan.groeger@gmail.com"
+SUPPORT_MAIL_ADDRESS = "example@example.com"
 
 ## homepage stuff
 HOMEPAGE_TAB_TITLE = f"{PROJ_NAME} - Home"

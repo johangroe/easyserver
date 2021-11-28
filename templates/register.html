@@ -1,0 +1,102 @@
+{% extends "login_register_base.html" %}
+
+{% block head %}
+    {{ super() }}
+    <title>{{ tab_title }}</title>
+{% endblock head %}
+
+
+{% block header %}
+    <h1>You want to register? There you go:</h1>
+{% endblock header %}
+
+
+{% block form %}
+    <input type="hidden" name="origin" value="register">
+    <ul style="list-style-type:none;">
+        {% if username_to_register != ""  and error != "username_already_assigned" %}
+          <li><input name="username" placeholder="username" value={{ username_to_register }}></li>
+        {% else %}
+          <li><input name="username" placeholder="username" ></li>
+        {% endif %}
+
+        <li>
+          <select name="restoring_question">
+            <option value="invalid" selected disabled hidden>Select a restoring question.</option>
+            {% if question == "pet_name" %}
+              <option value="pet_name" selected>What was the name of your first pet?</option>
+            {% else %}
+              <option value="pet_name">What was the name of your first pet?</option>
+            {% endif %}
+            {% if question == "birth_city" %}
+              <option value="birth_city" selected>In which city were you born?</option>
+            {% else %}
+              <option value="birth_city">In which city were you born?</option>
+            {% endif %}
+            {% if question == "nickname" %}
+              <option value="nickname" selected>What's your nickname?</option>
+            {% else %}
+              <option value="nickname">What's your nickname?</option>
+            {% endif %}
+            {% if question == "first_car" %}
+              <option value="first_car" selected>What was your first car?</option>
+            {% else %}
+              <option value="first_car">What was your first car?</option>
+            {% endif %}
+          </select>
+          {% if answer != "" %}
+            <input name="answer" placeholder="recovery answer" value={{ answer }}>
+          {% else %}
+            <input name="answer" placeholder="recovery answer">
+          {% endif %}
+        </li>
+
+        {% if password1 != "" and error != "passwords_not_same"%}
+          <li><input name="password1" placeholder="password" type="password" value={{ password1 }}></li>
+        {% else %}
+          <li><input name="password1" placeholder="password" type="password"></li>
+        {% endif %}
+
+        {% if password2 != "" and error != "passwords_not_same"%}
+          <li><input name="password2" placeholder="repeat password" type="password" value={{ password2 }}></li>
+        {% else %}
+          <li><input name="password2" placeholder="repeat password" type="password"></li>
+        {% endif %}
+
+        {% if direct_login != None %}
+          <li><input name="direct_login" type="checkbox" checked><label>Log in directly and remember me</label></li>
+        {% else %}
+          <li><input name="direct_login" type="checkbox"><label>Log in directly and remember me</label></li>
+        {% endif %}
+        <li><button type="submit">Register!</button></li>
+    </ul>
+{% endblock form %}
+
+
+{% block error %}
+  {% if error == "username_already_assigned" %}
+    <div id="invalid_register">
+      <p>Your desired username is already in use. Please use a different one.</p>
+    </div>
+  {% elif error == "passwords_not_same" %}
+    <div id="invalid_register">
+      <p>Your given passwords are not identically. Please correct them.</p>
+    </div>
+  {% elif error == "invalid_data" %}
+    <div id="invalid_register">
+      <p>Please enter valid data.</p>
+    </div>
+  {% endif %}
+{% endblock error %}
+
+
+{% block change_mode %}
+  <input type="hidden" name="origin" value="switch_to_login">
+  <div id="change_mode">
+    <p>Already have an account? </p>
+    <button type="submit">Login here.</button>
+  </div>
+{% endblock change_mode %}
+
+
+</html>

@@ -1,0 +1,43 @@
+{% extends "login_register_base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <title>{{ tab_title }}</title>
+{% endblock head %}
+
+
+{% block header %}
+  <h1>You want to login? There you go:</h1>
+{% endblock header %}
+
+
+{% block form %}
+  <input type="hidden" name="origin" value="login">
+  <ul style="list-style-type:none;">
+      <li><input name="username" placeholder="username"></li>
+      <li><input name="password" placeholder="password" type="password"></li>
+      <li><input name="stayloggedin" type="checkbox"><label>Remember me</label></li>
+      <li><button type="submit">LogIn!</button></li>
+  </ul>
+{% endblock form %}
+
+
+{% block error %}
+  {% if error == "invalid_login" %}
+    <div id="invalid_login">
+      <p>Your username and/or password is incorrect. Please try again.</p>
+    </div>
+  {% endif %}
+{% endblock error %}
+
+
+{% block change_mode %}
+  <input type="hidden" name="origin" value="switch_to_register">
+  <div id="change_mode">
+    <p>Don't have an account? </p>
+    <button type="submit">Register here.</button>
+  </div>
+{% endblock change_mode %}
+
+
+</html>
