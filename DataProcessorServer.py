@@ -17,7 +17,6 @@ A module to work between `Flask` and `TinyUtils` on a server to manage usernames
 ## database-users       {"id": *, "table": "admin/user", "username": "***", "password": "***", "clients-loggedin-stayloggedin": {*client*: "True&True", *client*: "True&False"}}
 ## database-content     {"id": *, "table": "user, "username": "***", "data": "*data*"}
 ## database-cont-local  {"id": *, "table": *, *xyz*: *abc*, *123*: *789*}
-from werkzeug.utils import redirect
 import TinyUtils as tut
 
 stdcmds = ["push", "pull", "login", "logout", "new_user", "del_user", "test"]
@@ -275,6 +274,9 @@ class commands:
             id = doc["id"]
             tut.documents.delete(id)
             tut.db.set(CONTENTDB)
+            doc = tut.documents.get.by_field("username", content["username"])[0]
+            id = doc["id"]
+            tut.documents.delete(id)
             return {"resp": "check"}
 
 
