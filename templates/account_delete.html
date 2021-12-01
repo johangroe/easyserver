@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="icon" href="{{ url_for('static', filename='icons/main.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>{{ tab_title }}</title>
+  </head>
+  <body>
+
+    <div id="header">
+      <h1>Are you sure about that?</h1>
+    </div>
+
+    <div>
+      <p>
+        This action CANNOT BE UNDONE!<br>
+        To confirm, please enter your username and password:
+        <form method="POST" id="form_margin">
+            <ul style="list-style-type:none;">
+                <li><input name="username" placeholder="username"></li>
+                <li><input name="password" placeholder="password" type="password"></li>
+                <!--<li><button type="submit" name="origin" value="account_delete_final">Delete my account!</button></li>-->
+                <li><button type="submit" name="origin" value="None">Delete my account!</button></li>
+            </ul>
+        </form>
+    
+        
+      </p>
+      <p>Back to the <a href="/">homepage</a>.</p>
+    </div>
+
+
+    
+
+    
+    
+
+
+  </body>
+</html>
