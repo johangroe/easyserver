@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template, redirect, session
 import json
-#import datetime
 
 import DataProcessorServer as datapro
 import SiteRenderer as renderer
@@ -70,12 +69,12 @@ def home_func():
 
 ## Loginpage, registerpage and accountpage in one
 @app.route("/account/", methods = ["GET", "POST"])
-def login_func():
+def account_func():
     session_loggedin, session_username, session_stayloggedin, session_redirect_mode = datapro.check_session(session)
 
     if request.method == "GET":
         if session_loggedin == True:
-            return renderer.account(mode = "account")
+            return renderer.account(mode = "account", username = session_username)
 
         is_error = None
         return renderer.account(mode = session_redirect_mode, username = session_username, error = is_error)
@@ -83,7 +82,7 @@ def login_func():
 
     elif request.method == "POST":
         is_error = None
-        
+
         ## internes umschalten auf der account-seite
         if request.form["origin"] == "switch_to_register":
             return renderer.account(mode = "register", username = session_username, error = is_error)
@@ -94,8 +93,8 @@ def login_func():
         elif request.form["origin"] == "login":
             
             ## load values from the form submitted
-            username = request.form["username"]
-            password = request.form["password"]
+            username = str(request.form["username"])
+            password = str(request.form["password"])
             if request.form.get("stayloggedin") == None:
                 stayloggedin = False
             elif request.form.get("stayloggedin") == "on":
@@ -121,8 +120,8 @@ def login_func():
                     if stayloggedin == True:
                         session.permanent = True
                     elif stayloggedin == False:
-                        session.permanent = False                   
-                    
+                        session.permanent = False
+
                     session["user_loggedin"] = True
                     session["user_stayloggedin"] = stayloggedin
                     session["user_name"] = username
@@ -135,13 +134,13 @@ def login_func():
         elif request.form["origin"] == "register":
             
             ## load values from the form submitted
-            username = request.form["username"]
-            question = request.form.get("restoring_question")
-            answer = request.form["answer"]
-            password1 = request.form["password1"]
-            password2 = request.form["password2"]
+            username = str(request.form["username"])
+            question = str(request.form.get("restoring_question"))
+            answer = str(request.form["answer"])
+            password1 = str(request.form["password1"])
+            password2 = str(request.form["password2"])
             direct_login = False
-            print(request.form.get("direct_login"))
+            #print(request.form.get("direct_login"))
             
             if request.form.get("direct_login") == None:
                 direct_login = False
@@ -164,7 +163,6 @@ def login_func():
 
             ## signup
             else:
-
                 datapro.go({"req": "new_user", "username": username, "password": password1, "client": "web", "stayloggedin": "False"})
                 if direct_login == True:
                     session["user_loggedin"] = True
@@ -177,11 +175,65 @@ def login_func():
                 else:
                     session["user_redirect_mode"] = "login"
                     return redirect("/account/", 302)
-        
+
+
         ## perform account data change
-        elif request.form["origin"] == "account":
-            pass
+        elif request.form["origin"] == "account_change":
+            new_username = str(request.form["username"])
+            old_username = session["user_name"]
+
+            password_old = str(request.form["password_old"])
+            password_new1 = str(request.form["password_new1"])
+            password_new2 = str(request.form["password_new2"])
+
+            if new_username == "":
+                ## fehler ungültiger nutzername
+                pass
+
+            if datapro.check_username_existing(new_username) == True:
+                ## fehler nutzername bereits in nutzung
+                pass
             
+            if new_username != old_username:
+                ## nutzernamen ändern
+                pass
+
+            if password_old != "" and password_new1 != "" and password_new2 != "":
+                #if password_new1 != password_old
+                
+                if password_new1 == password_new2 and password_new1 != password_old:
+                    ## passwort ändern
+                    pass
+                
+
+
+            print("requested changes!!!")
+            return redirect("/", 302)
+
+
+        ## display final delete site
+        elif request.form["origin"] == "account_delete":
+            print("requested to delete account!!!")
+            return renderer.account(mode = "account_delete", error = None)
+
+
+        ## perform account deletion
+        elif request.form["origin"] == "account_delete_final":
+            username1 = session["user_name"]
+            username2 = str(request.form["username"])
+            password = str(request.form["password"])
+            #print(username1, username2, password)
+            if str(username1) == str(username2):
+                if datapro.check_username_password(username2, password) == True:
+                    print("account ready to delete")
+                    datapro.go({"req": "del_user", "username": username2, "password": password})
+                    datapro.clear_session(session)
+                    return redirect("/", 302)
+                else:
+                    return renderer.account(mode = "account_delete", error = "invalid_data")
+            else:
+                return renderer.account(mode = "account_delete", error = "invalid_data")
+
 
 
 ## admin page
@@ -192,16 +244,9 @@ def admin_func():
 
 
 
-@app.route("/logintest/", methods = ["GET", "POST"])
-def logintest_func():
-    if request.method == "GET":
-        print(request.remote_addr)
-        return render_template("login.html")
-    elif request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        print(f"{username}: {password}")
-        return f"{username}: {password}"
+@app.route("/test/", methods = ["GET", "POST"])
+def test_func():
+    return renderer.testpage()
 
 
 if __name__ == "__main__":
