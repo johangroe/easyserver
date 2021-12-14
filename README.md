@@ -1,3 +1,5 @@
+[![Generic badge](https://img.shields.io/badge/status-in development-red.svg)](https://github.com/johangroe/easyserver)
+
 # easyserver
 A serverside script, that saves data, allows users to change their details and provides an API over which this data can be accessed.
 At the moment this is mainly in development, so you'll find unnecessary files, unfinished and bad looking code, but mostly not working features.
