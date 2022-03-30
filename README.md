@@ -1,4 +1,4 @@
-[![Generic badge](https://img.shields.io/badge/status-in%20developement-ffff00.svg)](https://github.com/johangroe/)
+![status - unfinished / discontinued](https://img.shields.io/badge/status-unfinished_%2F_discontinued-orange)(https://github.com/johangroe/)
 
 
 # easyserver
